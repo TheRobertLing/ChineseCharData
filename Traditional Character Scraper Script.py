@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
-pd.set_option('display.max_columns', None)
+
 # Open Excel file
 df = pd.read_excel('CharacterDatabase.xlsx')
 
