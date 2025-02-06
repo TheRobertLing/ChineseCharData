@@ -34,3 +34,4 @@ df["Simplified"] = character_data_df["Simplified"]
 # Write back to the same sheet, overwriting the data
 with pd.ExcelWriter('CharacterDatabase.xlsx', engine="openpyxl", mode="a", if_sheet_exists="replace") as writer:
     df.to_excel(writer, sheet_name='Sheet1', index=False)
+

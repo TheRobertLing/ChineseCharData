@@ -1,10 +1,8 @@
 from bs4 import BeautifulSoup
-import httpx  # Async HTTP requests
+import httpx
 import asyncio
 import pandas as pd
 import json
-
-pd.set_option('display.max_columns', None)
 
 # Open Excel file
 df = pd.read_excel('CharacterDatabase.xlsx')
