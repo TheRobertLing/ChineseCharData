@@ -24,11 +24,13 @@ for table in character_tables:
     for dd in table.find_all('dd'):
         # Get text and strip whitespaces
         string = dd.text.strip()
-        character_data.append((int(string[:4]), string[4:]))
+        character_data.append((int(string[:4]), string[4:6]))
 
 # Write the character data into a data frame and concatenate it to the existing data frame
 character_data_df = pd.DataFrame(character_data, columns=["Position", "Simplified"])
-df_combined = pd.concat([df, character_data_df], ignore_index=True)
+df["Position"] = character_data_df["Position"]
+df["Simplified"] = character_data_df["Simplified"]
 
-with pd.ExcelWriter('CharacterDatabase.xlsx', engine="openpyxl", mode="a") as writer:
-    df_combined.to_excel(writer, sheet_name='Sheet1', index=False)
+# Write back to the same sheet, overwriting the data
+with pd.ExcelWriter('CharacterDatabase.xlsx', engine="openpyxl", mode="a", if_sheet_exists="replace") as writer:
+    df.to_excel(writer, sheet_name='Sheet1', index=False)
